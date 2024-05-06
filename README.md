@@ -1,1 +1,1 @@
-# blog-api-admin
+# blog-admin
