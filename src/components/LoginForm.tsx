@@ -1,23 +1,11 @@
-import { useState } from "react";
 const url = import.meta.env.VITE_API_URL + "/login";
 
 export default function LoginForm() {
-  const [formData, setFormData] = useState({ username: "", password: "" });
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    
-    const postData = new FormData();
-    postData.append("username", formData.username);
-    postData.append("password", formData.password);
+    const postData = new URLSearchParams(
+      new FormData(e.target as HTMLFormElement) as unknown as string
+    );
 
     try {
       const response = await fetch(url, {
@@ -50,8 +38,6 @@ export default function LoginForm() {
           className="border"
           name="username"
           required
-          value={formData.username}
-          onChange={handleInputChange}
         />
       </div>
       <div className="flex gap-2 justify-between">
@@ -62,8 +48,6 @@ export default function LoginForm() {
           className="border"
           name="password"
           required
-          value={formData.password}
-          onChange={handleInputChange}
         />
       </div>
       <button type="submit" className="border">
