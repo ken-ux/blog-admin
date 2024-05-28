@@ -17,7 +17,12 @@ export default function LoginForm() {
       });
 
       const result = await response.json();
-      console.log("Success:", result);
+      console.log("Response:", result);
+
+      // Save to local storage if result includes token
+      if (result.token) {
+        localStorage.setItem("token", result);
+      }
     } catch (error) {
       console.error("Error:", error);
     }
@@ -38,6 +43,7 @@ export default function LoginForm() {
           className="border"
           name="username"
           required
+          autoComplete="username"
         />
       </div>
       <div className="flex gap-2 justify-between">
@@ -48,6 +54,7 @@ export default function LoginForm() {
           className="border"
           name="password"
           required
+          autoComplete="current-password"
         />
       </div>
       <button type="submit" className="border">
