@@ -42,33 +42,35 @@ export default function LoginForm() {
   return (
     <form
       onSubmit={submitHandler}
-      // action={url}
       method="post"
-      className="border min-h-80 p-4 flex flex-col gap-4"
+      className="border p-8 flex flex-col gap-4"
     >
-      <div className="flex gap-2 justify-between">
+      <div className="flex gap-3 justify-between items-center">
         <label htmlFor="username">Username</label>
         <input
           type="text"
           id="username"
-          className="border"
+          className="border px-2 py-0.5 rounded"
           name="username"
           required
           autoComplete="username"
         />
       </div>
-      <div className="flex gap-2 justify-between">
+      <div className="flex gap-3 justify-between items-center">
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
-          className="border"
+          className="border px-2 py-0.5 rounded"
           name="password"
           required
           autoComplete="current-password"
         />
       </div>
-      <button type="submit" className="border">
+      <button
+        type="submit"
+        className="border py-2 rounded bg-sky-600 text-white"
+      >
         Login
       </button>
       <button type="button" onClick={clickHandler}>
