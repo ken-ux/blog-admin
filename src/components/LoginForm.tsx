@@ -1,6 +1,7 @@
 const url = import.meta.env.VITE_API_URL + "/login";
+import { LoginFormProps } from "../types";
 
-export default function LoginForm() {
+export default function LoginForm({ setAuthenticated }: LoginFormProps) {
   async function submitHandler(e: React.FormEvent) {
     e.preventDefault();
     const postData = new URLSearchParams(
