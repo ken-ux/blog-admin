@@ -13,11 +13,12 @@ export default function EditorPage({ setAuthenticated }: LoginFormProps) {
   }
 
   return (
-    <>
-      <button type="button" onClick={clickHandler} className="text-lg self-end">
+    <main className="border border-red-500 flex flex-col">
+      <button type="button" onClick={clickHandler} className="border text-lg self-end">
         Logout
       </button>
+      <h1 className="text-2xl">Edit or Create Posts</h1>
       <Editor />
-    </>
+    </main>
   );
 }
