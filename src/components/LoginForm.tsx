@@ -23,6 +23,7 @@ export default function LoginForm({ setAuthenticated }: LoginFormProps) {
       // Save to local storage if result includes token
       if (result.token) {
         localStorage.setItem("token", result.token);
+        setAuthenticated(true);
       }
     } catch (error) {
       console.error("Error:", error);
