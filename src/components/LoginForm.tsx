@@ -78,14 +78,6 @@ export default function LoginForm({ setAuthenticated }: LoginFormProps) {
       <button type="button" onClick={clickHandler}>
         Try Request
       </button>
-      <button
-        type="button"
-        onClick={() => {
-          console.log(localStorage.clear());
-        }}
-      >
-        Clear Token
-      </button>
     </form>
   );
 }
