@@ -1,11 +1,16 @@
+import { useState } from "react";
 import LoginForm from "./components/LoginForm";
+import Editor from "./components/Editor";
 
 function App() {
+  const [authenticated, setAuthenticated] = useState(false);
+
   return (
     <div className="border border-red-400 flex flex-col items-center gap-6 p-4 max-w-screen-xl m-auto">
       <h1 className="text-2xl">Blog Admin</h1>
       <p>Login to create and edit your posts.</p>
-      <LoginForm />
+      <LoginForm setAuthenticated={setAuthenticated} />
+      {authenticated && <Editor />}
     </div>
   );
 }
