@@ -35,5 +35,5 @@ export default function PostContainer() {
     });
   }
 
-  return <>{postList}</>;
+  return <div className="flex flex-col gap-8">{postList}</div>;
 }
