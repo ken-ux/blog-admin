@@ -8,12 +8,14 @@ export default function Post({
   published,
 }: PostProps) {
   return (
-    <div>
-      <p>{title}</p>
-      <p>{text}</p>
-      <p>{timestamp}</p>
-      <p>{published.toString()}</p>
+    <div className="border border-red-500">
+      <p>Title: {title}</p>
+      <p>Text: {text}</p>
+      <p>Posted: {timestamp}</p>
+      <p>Published: {published.toString()}</p>
       <p>{id}</p>
+      <button type="button">Edit</button>
+      <button type="button">Delete</button>
     </div>
   );
 }
