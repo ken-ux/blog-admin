@@ -23,28 +23,41 @@ export default function Post({
   };
 
   return (
-    <form className="border border-red-500">
-      <div>
+    <form className="border border-red-500 flex flex-col gap-2 p-6">
+      <div className="flex gap-2 items-center">
         <label htmlFor="title">Title:</label>
-        <input type="text" id="title" name="title" value={title} readOnly />
+        <input
+          type="text"
+          id="title"
+          name="title"
+          value={title}
+          readOnly
+          className="border px-2 py-1"
+        />
       </div>
-      <div>
+      <div className="flex flex-col">
         <label htmlFor="text">Text:</label>
-        <input type="text" id="text" name="text" value={text} readOnly />
+        <textarea
+          id="text"
+          name="text"
+          value={text}
+          readOnly
+          className="border px-2 py-1"
+        />
       </div>
-      <div>
-        <label htmlFor="timestamp">Timestamp</label>
+      <div className="flex gap-2 items-center">
+        <label htmlFor="timestamp">Timestamp:</label>
         <input
           type="date"
           id="timestamp"
           name="timestamp"
           value={parseDate(new Date(timestamp))}
           readOnly
+          className="border px-2 py-1"
         />
       </div>
-      <div>
+      <div className="flex gap-2 items-center">
         <legend>Published:</legend>
-        <label htmlFor="published_true">True:</label>
         <input
           type="radio"
           id="published_true"
@@ -52,8 +65,9 @@ export default function Post({
           value="true"
           checked={published ? true : false}
           readOnly
+          className="border"
         />
-        <label htmlFor="published_false">False:</label>
+        <label htmlFor="published_true">True</label>
         <input
           type="radio"
           id="published_false"
@@ -61,13 +75,28 @@ export default function Post({
           value="false"
           checked={!published ? true : false}
           readOnly
+          className="border"
         />
+        <label htmlFor="published_false">False</label>
       </div>
 
       <p>Published: {published.toString()}</p>
+
       <p>{id}</p>
-      <button type="button">Edit</button>
-      <button type="button">Delete</button>
+      <div className="flex gap-2">
+        <button
+          type="button"
+          className="bg-sky-600 text-white rounded px-2 py-1"
+        >
+          Edit
+        </button>
+        <button
+          type="button"
+          className="bg-sky-600 text-white rounded px-2 py-1"
+        >
+          Delete
+        </button>
+      </div>
     </form>
   );
 }
