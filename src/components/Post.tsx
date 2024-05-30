@@ -7,6 +7,21 @@ export default function Post({
   id,
   published,
 }: PostProps) {
+  const parseDate = (date: Date): string => {
+    const dateArr = date.toLocaleDateString().split("/");
+    const y = dateArr[2];
+    let [m, d] = dateArr;
+
+    if (m.length < 2) {
+      m = "0" + m;
+    }
+    if (d.length < 2) {
+      d = "0" + d;
+    }
+
+    return `${y}-${m}-${d}`;
+  };
+
   return (
     <form className="border border-red-500">
       <div>
@@ -23,7 +38,7 @@ export default function Post({
           type="date"
           id="timestamp"
           name="timestamp"
-          value={timestamp}
+          value={parseDate(new Date(timestamp))}
           readOnly
         />
       </div>
