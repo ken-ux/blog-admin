@@ -37,7 +37,7 @@ export default function Post({
             id="title"
             name="title"
             defaultValue={title}
-            disabled={editable ? false : true}
+            disabled={!editable}
             className="border px-2 py-1 w-full"
           />
         </div>
@@ -47,7 +47,7 @@ export default function Post({
             id="text"
             name="text"
             defaultValue={text}
-            disabled={editable ? false : true}
+            disabled={!editable}
             className="border px-2 py-1 w-full"
           />
         </div>
@@ -60,7 +60,7 @@ export default function Post({
             id="timestamp"
             name="timestamp"
             defaultValue={parseDate(new Date(timestamp))}
-            disabled={editable ? false : true}
+            disabled={!editable}
             className="border px-2 py-1"
           />
         </div>
@@ -72,7 +72,7 @@ export default function Post({
             name="published"
             value="true"
             defaultChecked={published ? true : false}
-            disabled={editable ? false : true}
+            disabled={!editable}
             className="border"
           />
           <label htmlFor="published_true">True</label>
@@ -82,7 +82,7 @@ export default function Post({
             name="published"
             value="false"
             checked={!published ? true : false}
-            disabled={editable ? false : true}
+            disabled={!editable}
             className="border"
           />
           <label htmlFor="published_false">False</label>
