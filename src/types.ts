@@ -10,3 +10,10 @@ export interface PostProps {
   _id?: string;
   published: boolean;
 }
+
+export interface DialogFormData {
+  title: string;
+  text: string;
+  timestamp: Date;
+  published: boolean;
+}
