@@ -13,7 +13,7 @@ export default function EditorPage({ setAuthenticated }: LoginFormProps) {
   }
 
   return (
-    <main className="border border-red-500 flex flex-col">
+    <main className="flex flex-col">
       <button
         type="button"
         onClick={clickHandler}

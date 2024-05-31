@@ -6,7 +6,7 @@ function App() {
   const [authenticated, setAuthenticated] = useState(false);
 
   return (
-    <div className="border border-red-400 p-4 max-w-screen-xl my-8 m-auto">
+    <div className="p-16 max-w-screen-xl my-8 m-auto bg-white rounded-lg shadow-xl">
       {authenticated ? (
         <EditorPage setAuthenticated={setAuthenticated} />
       ) : (
