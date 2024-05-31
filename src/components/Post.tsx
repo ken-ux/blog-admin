@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { PostProps } from "../types";
 
 export default function Post({
@@ -7,6 +8,8 @@ export default function Post({
   id,
   published,
 }: PostProps) {
+  const [editable, setEditable] = useState(false);
+
   const parseDate = (date: Date): string => {
     const dateArr = date.toLocaleDateString().split("/");
     const y = dateArr[2];
@@ -18,13 +21,12 @@ export default function Post({
     if (d.length < 2) {
       d = "0" + d;
     }
-
     return `${y}-${m}-${d}`;
   };
 
   return (
     <form className="border border-red-500 flex flex-col gap-2 p-6">
-      <div className="flex gap-2 items-center">
+      <div className="flex flex-col">
         <label htmlFor="title">Title:</label>
         <input
           type="text"
@@ -32,7 +34,7 @@ export default function Post({
           name="title"
           value={title}
           readOnly
-          className="border px-2 py-1"
+          className="border px-2 py-1 w-1/2"
         />
       </div>
       <div className="flex flex-col">
@@ -42,7 +44,7 @@ export default function Post({
           name="text"
           value={text}
           readOnly
-          className="border px-2 py-1"
+          className="border px-2 py-1 w-1/2"
         />
       </div>
       <div className="flex gap-2 items-center">
@@ -86,16 +88,25 @@ export default function Post({
       <div className="flex gap-2">
         <button
           type="button"
-          className="bg-sky-600 text-white rounded px-2 py-1"
+          className="bg-red-600 text-white rounded px-2 py-1"
         >
-          Edit
+          Delete
         </button>
         <button
           type="button"
           className="bg-sky-600 text-white rounded px-2 py-1"
+          onClick={() => setEditable(!editable)}
         >
-          Delete
+          {editable ? "Cancel" : "Edit"}
         </button>
+        {editable && (
+          <button
+            type="button"
+            className="bg-sky-600 text-white rounded px-2 py-1"
+          >
+            Submit
+          </button>
+        )}
       </div>
     </form>
   );
