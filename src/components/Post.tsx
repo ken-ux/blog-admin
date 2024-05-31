@@ -25,15 +25,18 @@ export default function Post({
   };
 
   return (
-    <form className="border border-red-500 flex flex-col gap-2 p-6">
+    <form
+      onSubmit={(e) => e.preventDefault()}
+      className="border border-red-500 flex flex-col gap-2 p-6"
+    >
       <div className="flex flex-col">
         <label htmlFor="title">Title:</label>
         <input
           type="text"
           id="title"
           name="title"
-          value={title}
-          readOnly
+          defaultValue={title}
+          disabled={editable ? false : true}
           className="border px-2 py-1 w-1/2"
         />
       </div>
@@ -42,8 +45,8 @@ export default function Post({
         <textarea
           id="text"
           name="text"
-          value={text}
-          readOnly
+          defaultValue={text}
+          disabled={editable ? false : true}
           className="border px-2 py-1 w-1/2"
         />
       </div>
@@ -53,8 +56,8 @@ export default function Post({
           type="date"
           id="timestamp"
           name="timestamp"
-          value={parseDate(new Date(timestamp))}
-          readOnly
+          defaultValue={parseDate(new Date(timestamp))}
+          disabled={editable ? false : true}
           className="border px-2 py-1"
         />
       </div>
@@ -65,8 +68,8 @@ export default function Post({
           id="published_true"
           name="published"
           value="true"
-          checked={published ? true : false}
-          readOnly
+          defaultChecked={published ? true : false}
+          disabled={editable ? false : true}
           className="border"
         />
         <label htmlFor="published_true">True</label>
@@ -76,7 +79,7 @@ export default function Post({
           name="published"
           value="false"
           checked={!published ? true : false}
-          readOnly
+          disabled={editable ? false : true}
           className="border"
         />
         <label htmlFor="published_false">False</label>
@@ -101,7 +104,7 @@ export default function Post({
         </button>
         {editable && (
           <button
-            type="button"
+            type="submit"
             className="bg-sky-600 text-white rounded px-2 py-1"
           >
             Submit
