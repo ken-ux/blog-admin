@@ -14,10 +14,14 @@ export default function EditorPage({ setAuthenticated }: LoginFormProps) {
 
   return (
     <main className="border border-red-500 flex flex-col">
-      <button type="button" onClick={clickHandler} className="border text-lg self-end">
+      <button
+        type="button"
+        onClick={clickHandler}
+        className="text-lg self-end px-2 py-1 bg-slate-600 text-white rounded"
+      >
         Logout
       </button>
-      <h1 className="text-2xl">Edit or Create Posts</h1>
+      <h1 className="text-2xl mb-4">Edit or Create Posts</h1>
       <Editor />
     </main>
   );
