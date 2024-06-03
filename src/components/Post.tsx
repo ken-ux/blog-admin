@@ -24,6 +24,23 @@ export default function Post({
     return `${y}-${m}-${d}`;
   };
 
+  const deletePost = async () => {
+    const url = import.meta.env.VITE_API_URL + "/posts/" + id;
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+        headers: {
+          Authorization: localStorage.getItem("token") as string,
+        },
+      });
+
+      const result = await response.text();
+      console.log("Response:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <form
       onSubmit={(e) => e.preventDefault()}
@@ -95,6 +112,7 @@ export default function Post({
           <button
             type="button"
             className="bg-red-600 text-white rounded px-2 py-1"
+            onClick={deletePost}
           >
             Delete
           </button>
