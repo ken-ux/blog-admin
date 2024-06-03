@@ -29,9 +29,26 @@ export default function Dialog({ clickHandler }: { clickHandler: () => void }) {
     console.log(formData);
   };
 
-  const submitHandler = (e: React.FormEvent) => {
+  const submitHandler = async (e: React.FormEvent) => {
     e.preventDefault();
     clickHandler();
+    const url = import.meta.env.VITE_API_URL + "/posts";
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token") as string,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.text();
+      console.log("Response:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
