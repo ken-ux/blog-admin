@@ -34,7 +34,6 @@ export default function Post({
         newFormData[property] = e.target.value === "true";
     }
     setFormData(newFormData);
-    console.log(formData);
   };
 
   const parseDate = (date: Date): string => {
