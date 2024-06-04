@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { DialogFormData } from "../types";
+import { FormData } from "../types";
 
 export default function Dialog({ clickHandler }: { clickHandler: () => void }) {
-  const [formData, setFormData] = useState<DialogFormData>({
+  const [formData, setFormData] = useState<FormData>({
     title: "",
     text: "",
     timestamp: new Date(),
@@ -26,7 +26,6 @@ export default function Dialog({ clickHandler }: { clickHandler: () => void }) {
         newFormData[property] = e.target.value === "true";
     }
     setFormData(newFormData);
-    console.log(formData);
   };
 
   const submitHandler = async (e: React.FormEvent) => {
