@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { PostProps } from "../types";
+import { FormData } from "../types";
 
 export default function Post({
   title,
@@ -8,7 +9,33 @@ export default function Post({
   id,
   published,
 }: PostProps) {
+  const [formData, setFormData] = useState<FormData>({
+    title: title,
+    text: text,
+    timestamp: new Date(timestamp),
+    published: published,
+  });
   const [editable, setEditable] = useState(false);
+
+  const handleChange = (
+    property: string,
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const newFormData = formData;
+    switch (property) {
+      case "title":
+      case "text":
+        newFormData[property] = e.target.value;
+        break;
+      case "timestamp":
+        newFormData[property] = new Date(e.target.value);
+        break;
+      case "published":
+        newFormData[property] = e.target.value === "true";
+    }
+    setFormData(newFormData);
+    console.log(formData);
+  };
 
   const parseDate = (date: Date): string => {
     const dateArr = date.toLocaleDateString().split("/");
@@ -41,9 +68,31 @@ export default function Post({
     }
   };
 
+  const submitHandler = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setEditable(false);
+    const url = import.meta.env.VITE_API_URL + "/posts/" + id;
+
+    try {
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("token") as string,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.text();
+      console.log("Response:", result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <form
-      onSubmit={(e) => e.preventDefault()}
+      onSubmit={submitHandler}
       className="border border-slate-300 rounded-lg flex flex-col md:flex-row gap-8 p-6 shadow-md"
     >
       <div className="grow-[2] flex flex-col gap-2">
@@ -56,6 +105,7 @@ export default function Post({
             defaultValue={title}
             disabled={!editable}
             className="border px-2 py-1 w-full"
+            onChange={(e) => handleChange("title", e)}
           />
         </div>
         <div className="flex flex-col">
@@ -66,6 +116,7 @@ export default function Post({
             defaultValue={text}
             disabled={!editable}
             className="border px-2 py-1 w-full"
+            onChange={(e) => handleChange("text", e)}
           />
         </div>
       </div>
@@ -79,6 +130,7 @@ export default function Post({
             defaultValue={parseDate(new Date(timestamp))}
             disabled={!editable}
             className="border px-2 py-1"
+            onChange={(e) => handleChange("timestamp", e)}
           />
         </div>
         <div className="flex gap-2 items-center">
@@ -91,6 +143,7 @@ export default function Post({
             defaultChecked={published ? true : false}
             disabled={!editable}
             className="border"
+            onChange={(e) => handleChange("published", e)}
           />
           <label htmlFor="published_true">True</label>
           <input
@@ -98,9 +151,10 @@ export default function Post({
             id="published_false"
             name="published"
             value="false"
-            checked={!published ? true : false}
+            defaultChecked={!published ? true : false}
             disabled={!editable}
             className="border"
+            onChange={(e) => handleChange("published", e)}
           />
           <label htmlFor="published_false">False</label>
         </div>
