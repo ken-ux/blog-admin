@@ -30,17 +30,6 @@ export default function LoginForm({ setAuthenticated }: LoginFormProps) {
     }
   }
 
-  const clickHandler = async () => {
-    const urlTwo = import.meta.env.VITE_API_URL + "/protected";
-    const response = await fetch(urlTwo, {
-      headers: {
-        Authorization: localStorage.getItem("token") as string,
-      },
-    });
-    const result = await response.json();
-    console.log(result);
-  };
-
   return (
     <form
       onSubmit={submitHandler}
@@ -74,9 +63,6 @@ export default function LoginForm({ setAuthenticated }: LoginFormProps) {
         className="border py-2 rounded bg-sky-600 text-white"
       >
         Login
-      </button>
-      <button type="button" onClick={clickHandler}>
-        Try Request
       </button>
     </form>
   );
