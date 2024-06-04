@@ -446,6 +446,10 @@ video {
   display: none;
 }
 
+#root {
+  margin: 2rem;
+}
+
 body {
   --tw-bg-opacity: 1;
   background-color: rgb(2 132 199 / var(--tw-bg-opacity));
@@ -569,11 +573,6 @@ button:hover {
 
 .m-auto {
   margin: auto;
-}
-
-.my-8 {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
 }
 
 .mb-4 {

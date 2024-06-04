@@ -3,10 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  #root {
+    @apply m-8;
+  }
+
   body {
     @apply bg-sky-600;
   }
-  
+
   button {
     transition: all 0.1s ease-out;
   }
