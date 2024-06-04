@@ -11,7 +11,7 @@ export interface PostProps {
   published: boolean;
 }
 
-export interface DialogFormData {
+export interface FormData {
   title: string;
   text: string;
   timestamp: Date;
