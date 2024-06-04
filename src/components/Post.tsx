@@ -157,10 +157,6 @@ export default function Post({
           />
           <label htmlFor="published_false">False</label>
         </div>
-
-        <p>Published: {published.toString()}</p>
-
-        <p>{id}</p>
         <div className="flex gap-2">
           <button
             type="button"
