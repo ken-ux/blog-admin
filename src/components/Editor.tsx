@@ -22,7 +22,7 @@ export default function Editor() {
       <button
         type="button"
         onClick={clickHandler}
-        className="bg-sky-600 text-white rounded px-2 py-1 mb-4"
+        className="mb-4 rounded bg-sky-600 px-2 py-1 text-white"
       >
         + Create New Post
       </button>

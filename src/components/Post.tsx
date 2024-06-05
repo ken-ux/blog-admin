@@ -19,7 +19,7 @@ export default function Post({
 
   const handleChange = (
     property: string,
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const newFormData = formData;
     switch (property) {
@@ -92,9 +92,9 @@ export default function Post({
   return (
     <form
       onSubmit={submitHandler}
-      className="border border-slate-300 rounded-lg flex flex-col md:flex-row gap-8 p-6 shadow-md"
+      className="flex flex-col gap-8 rounded-lg border border-slate-300 p-6 shadow-md md:flex-row"
     >
-      <div className="grow-[2] flex flex-col gap-2">
+      <div className="flex grow-[2] flex-col gap-2">
         <div className="flex flex-col">
           <label htmlFor="title">Title:</label>
           <input
@@ -103,7 +103,7 @@ export default function Post({
             name="title"
             defaultValue={title}
             disabled={!editable}
-            className="border px-2 py-1 w-full"
+            className="w-full border px-2 py-1"
             onChange={(e) => handleChange("title", e)}
           />
         </div>
@@ -114,12 +114,12 @@ export default function Post({
             name="text"
             defaultValue={text}
             disabled={!editable}
-            className="border px-2 py-1 w-full"
+            className="w-full border px-2 py-1"
             onChange={(e) => handleChange("text", e)}
           />
         </div>
       </div>
-      <div className="flex-auto flex flex-col gap-2">
+      <div className="flex flex-auto flex-col gap-2">
         <div className="flex flex-col">
           <label htmlFor="timestamp">Timestamp:</label>
           <input
@@ -132,7 +132,7 @@ export default function Post({
             onChange={(e) => handleChange("timestamp", e)}
           />
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <legend>Published:</legend>
           <input
             type="radio"
@@ -160,14 +160,14 @@ export default function Post({
         <div className="flex gap-2">
           <button
             type="button"
-            className="bg-red-600 text-white rounded px-2 py-1"
+            className="rounded bg-red-600 px-2 py-1 text-white"
             onClick={deletePost}
           >
             Delete
           </button>
           <button
             type="button"
-            className="bg-sky-600 text-white rounded px-2 py-1"
+            className="rounded bg-sky-600 px-2 py-1 text-white"
             onClick={() => setEditable(!editable)}
           >
             {editable ? "Cancel" : "Edit"}
@@ -175,7 +175,7 @@ export default function Post({
           {editable && (
             <button
               type="submit"
-              className="bg-sky-600 text-white rounded px-2 py-1"
+              className="rounded bg-sky-600 px-2 py-1 text-white"
             >
               Submit
             </button>

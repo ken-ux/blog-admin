@@ -11,7 +11,7 @@ export default function Dialog({ clickHandler }: { clickHandler: () => void }) {
 
   const handleChange = (
     property: string,
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const newFormData = formData;
     switch (property) {
@@ -51,7 +51,7 @@ export default function Dialog({ clickHandler }: { clickHandler: () => void }) {
   };
 
   return (
-    <dialog className="shadow-xl rounded p-4 min-w-96">
+    <dialog className="min-w-96 rounded p-4 shadow-xl">
       <form onSubmit={submitHandler} className="flex flex-col gap-4">
         <div className="flex flex-col">
           <label htmlFor="title">Title:</label>
@@ -85,7 +85,7 @@ export default function Dialog({ clickHandler }: { clickHandler: () => void }) {
             onChange={(e) => handleChange("timestamp", e)}
           />
         </div>
-        <div className="flex gap-2 items-center">
+        <div className="flex items-center gap-2">
           <legend>Publish:</legend>
           <input
             type="radio"
@@ -108,17 +108,17 @@ export default function Dialog({ clickHandler }: { clickHandler: () => void }) {
           <label htmlFor="published_false">False</label>
         </div>
 
-        <div className="self-end flex gap-1">
+        <div className="flex gap-1 self-end">
           <button
             type="button"
             onClick={clickHandler}
-            className="bg-slate-600 text-white px-2 py-1 rounded"
+            className="rounded bg-slate-600 px-2 py-1 text-white"
           >
             Cancel
           </button>
           <button
             type="submit"
-            className="bg-sky-600 text-white px-2 py-1 rounded"
+            className="rounded bg-sky-600 px-2 py-1 text-white"
           >
             Submit
           </button>

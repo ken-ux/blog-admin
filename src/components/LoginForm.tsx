@@ -7,7 +7,7 @@ export default function LoginForm({ setAuthenticated }: LoginFormProps) {
   async function submitHandler(e: React.FormEvent) {
     e.preventDefault();
     const postData = new URLSearchParams(
-      new FormData(e.target as HTMLFormElement) as unknown as string
+      new FormData(e.target as HTMLFormElement) as unknown as string,
     );
     const url = import.meta.env.VITE_API_URL + "/login";
 
@@ -41,25 +41,25 @@ export default function LoginForm({ setAuthenticated }: LoginFormProps) {
     <form
       onSubmit={submitHandler}
       method="post"
-      className="border p-8 flex flex-col gap-4 w-96"
+      className="flex w-96 flex-col gap-4 border p-8"
     >
-      <div className="flex gap-3 justify-between items-center">
+      <div className="flex items-center justify-between gap-3">
         <label htmlFor="username">Username</label>
         <input
           type="text"
           id="username"
-          className="border px-2 py-0.5 rounded"
+          className="rounded border px-2 py-0.5"
           name="username"
           required
           autoComplete="username"
         />
       </div>
-      <div className="flex gap-3 justify-between items-center">
+      <div className="flex items-center justify-between gap-3">
         <label htmlFor="password">Password</label>
         <input
           type="password"
           id="password"
-          className="border px-2 py-0.5 rounded"
+          className="rounded border px-2 py-0.5"
           name="password"
           required
           autoComplete="current-password"
@@ -72,7 +72,7 @@ export default function LoginForm({ setAuthenticated }: LoginFormProps) {
       )}
       <button
         type="submit"
-        className="border py-2 rounded bg-sky-600 text-white"
+        className="rounded border bg-sky-600 py-2 text-white"
       >
         Login
       </button>
